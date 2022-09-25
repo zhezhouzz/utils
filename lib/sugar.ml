@@ -44,9 +44,9 @@ let ( let+ ) x f = opt_fmap x f
 let compare_bind a b = if a != 0 then a else b
 
 let clock f =
-  let start_t = Core_unix.time () in
+  let start_t = Core_unix.gettimeofday () in
   let res = f () in
-  let end_t = Core_unix.time () in
+  let end_t = Core_unix.gettimeofday () in
   end_t -. start_t, res
 
 
