@@ -49,4 +49,12 @@ let clock f =
   let end_t = Core_unix.time () in
   end_t -. start_t, res
 
+
+let short_str size e =
+  let mid = size / 2 in
+  if String.length e > size then
+    spf "%s\n...\n%s" (String.sub e 0 mid)
+      (String.sub e (String.length e - mid) mid)
+  else e
+
 include Assertion
