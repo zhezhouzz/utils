@@ -15,6 +15,12 @@ let map5 f (a, b, c, d, e) = (f a, f b, f c, f d, f e)
 let map6 f (a, b, c, d, e, g) = (f a, f b, f c, f d, f e, f g)
 let map7 f (a, b, c, d, e, g, h) = (f a, f b, f c, f d, f e, f g, f h)
 
+
+let _deopt msg (x: 'a option) =
+  match x with
+  | Some x -> x
+  | None -> failwith msg
+
 let opt_comapre c x y =
   match (x, y) with
   | None, None -> 0
