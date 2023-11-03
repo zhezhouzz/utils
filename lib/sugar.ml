@@ -15,11 +15,8 @@ let map5 f (a, b, c, d, e) = (f a, f b, f c, f d, f e)
 let map6 f (a, b, c, d, e, g) = (f a, f b, f c, f d, f e, f g)
 let map7 f (a, b, c, d, e, g, h) = (f a, f b, f c, f d, f e, f g, f h)
 
-
-let _deopt msg (x: 'a option) =
-  match x with
-  | Some x -> x
-  | None -> failwith msg
+let _deopt msg (x : 'a option) =
+  match x with Some x -> x | None -> failwith msg
 
 let opt_comapre c x y =
   match (x, y) with
@@ -53,8 +50,7 @@ let clock f =
   let start_t = Core_unix.gettimeofday () in
   let res = f () in
   let end_t = Core_unix.gettimeofday () in
-  end_t -. start_t, res
-
+  (end_t -. start_t, res)
 
 let short_str size e =
   let mid = size / 2 in
@@ -62,5 +58,12 @@ let short_str size e =
     spf "%s\n...\n%s" (String.sub e 0 mid)
       (String.sub e (String.length e - mid) mid)
   else e
+
+let rec pow a = function
+  | 0 -> 1
+  | 1 -> a
+  | n ->
+      let b = pow a (n / 2) in
+      b * b * if n mod 2 = 0 then 1 else a
 
 include Assertion
